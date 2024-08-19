@@ -13,6 +13,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+//get all blogs
 app.get('/get-all-blogs',async(req,res)=>{
     try{
         const blogs = await Blog.find({});
@@ -21,8 +22,51 @@ app.get('/get-all-blogs',async(req,res)=>{
         console.log(err);
         res.status(400).send({ message: "Something went wrong!", error: err.message });
     }
-})
+});
 
+//get single blog
+app.get('/blog/:id',async (req,res)=>{
+    try{
+        const id = req.params.id;
+        const response = await Blog.findById(id);
+        console.log(response);
+        res.send(response);
+    }catch(err){
+        console.log(err);
+        res.status(400).send({ message: "Something went wrong!", error: err.message });
+    }
+});
+
+//update a blog
+
+app.put('/blog/:id',async (req,res)=>{
+    try{
+        const id = req.params.id;
+        const data = req.body;
+        const response = await Blog.findByIdAndUpdate(id,data,{returnOriginal:false});
+        console.log(response);
+        res.send(response);
+    }catch(err){
+        console.log(err);
+        res.status(400).send({ message: "Something went wrong!", error: err.message });
+    }
+});
+
+//delete a blog
+app.delete('/blog/:id',async (req,res)=>{
+    try{
+        const id = req.params.id;
+        const response = await Blog.findByIdAndDelete(id);
+        console.log(response);
+        res.send("Success!");
+    }catch(err){
+        console.log(err);
+        res.status(400).send({ message: "Something went wrong!", error: err.message });
+    }
+});
+
+
+//create blog
 app.post('/create-blog', async (req,res) => {
 
     try {
