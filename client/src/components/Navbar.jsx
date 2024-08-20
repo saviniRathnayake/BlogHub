@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 
 function Navigation() {
   return (
-    <Navbar expand="lg" className="bg-primary text-light">
+    <Navbar expand="lg" bg="primary" data-bs-theme="dark">
       <Container>
         <Navbar.Brand href="#home">
             BlogHub
