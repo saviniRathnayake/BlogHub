@@ -1,11 +1,9 @@
 import React from 'react'
-import Button  from 'react-bootstrap/Button';
+import Landing from './pages/Landing'
 
 function App() {
   return (
-    <div>
-      <Button>test</Button>
-    </div>
+    <Landing />
   )
 }
 
